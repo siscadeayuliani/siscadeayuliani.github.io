@@ -496,6 +496,8 @@ html.m{scroll-snap-type:y proximity}
 .m .ct h2.big{font-size:56px!important}
 .m .cl{display:flex!important;flex-direction:column!important;gap:12px;width:100%}
 .m .cl a{width:100%!important;justify-content:center}
+
+html.p{scroll-snap-type:y proximity}.p nav{overflow-x:auto;scrollbar-width:none;justify-content:flex-start;top:6px!important}.p nav::-webkit-scrollbar{display:none}.p nav button{flex:none}.p .ctrl{zoom:2.2}
 </style></head><body><div id="vp"><div class="stage" id="stage">
 <nav id="nav"></nav>
 
@@ -662,12 +664,12 @@ html.m{scroll-snap-type:y proximity}
 </div></div>
 <script>
 const st=document.getElementById('stage');
-function fit(){const m=innerWidth<900&&innerWidth<innerHeight;document.documentElement.classList.toggle('m',m);if(m){const z=innerWidth/430;st.style.zoom=z;S.forEach(x=>{x.style.height='';x.style.minHeight=(innerHeight/z)+'px'});}else{const z=Math.min(innerWidth/1280,innerHeight/720);st.style.zoom=z;S.forEach(x=>{x.style.minHeight='';x.style.height=(innerHeight/z)+'px'});}}
+function fit(){const p=innerWidth<900&&innerWidth<innerHeight;const H=document.documentElement;H.classList.toggle('p',p);if(p){const z=innerWidth/1280;st.style.zoom=z;S.forEach(x=>{x.style.minHeight='';x.style.height='720px'});const nz=.72/z;nav.style.zoom=nz;nav.style.maxWidth=((innerWidth-16)/(z*nz))+'px';H.style.scrollPaddingTop='52px';st.style.paddingTop=(50/z)+'px';}else{const z=Math.min(innerWidth/1280,innerHeight/720);st.style.zoom=z;nav.style.zoom='';nav.style.maxWidth='';H.style.scrollPaddingTop='';st.style.paddingTop='';S.forEach(x=>{x.style.minHeight='';x.style.height=(innerHeight/z)+'px'});}}
 addEventListener('resize',fit);
 const S=[...document.querySelectorAll('.slide')],nav=document.getElementById('nav');
 const tabs=[...new Set(S.map(s=>s.dataset.tab))];let i=0;
 tabs.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>go(S.findIndex(s=>s.dataset.tab===t));nav.appendChild(b)});
-function go(n){i=Math.max(0,Math.min(S.length-1,n));const z=parseFloat(st.style.zoom)||1;window.scrollTo({top:S[i].offsetTop*z,behavior:'smooth'});setCur(i);}
+function go(n){i=Math.max(0,Math.min(S.length-1,n));const z=parseFloat(st.style.zoom)||1;window.scrollTo({top:S[i].offsetTop*z-(document.documentElement.classList.contains('p')?50:0),behavior:'smooth'});setCur(i);}
 function setCur(k){i=k;const x=S[k];document.documentElement.style.background=x.classList.contains('ct')?'#521315':x.classList.contains('cover')?'#f2e8d2':['#f2d6d5','#dc7f7f','#dcc3c2'][k%3];[...nav.children].forEach(b=>b.classList.toggle('on',b.textContent===S[i].dataset.tab));}
 document.getElementById('nx').onclick=()=>go(i+1);document.getElementById('pv').onclick=()=>go(i-1);
 addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}});
