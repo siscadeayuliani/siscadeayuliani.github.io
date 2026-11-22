@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=1280">
 <title>Sisca Dea Yuliani – Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Mrs+Saint+Delafield&family=Great+Vibes&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 <style>
@@ -497,7 +497,7 @@ html.m{scroll-snap-type:y proximity}
 .m .cl{display:flex!important;flex-direction:column!important;gap:12px;width:100%}
 .m .cl a{width:100%!important;justify-content:center}
 
-html.p{scroll-snap-type:y proximity}.p nav{overflow-x:auto;scrollbar-width:none;justify-content:flex-start;top:6px!important}.p nav::-webkit-scrollbar{display:none}.p nav button{flex:none}.p nav{left:8px!important;right:auto!important;transform:none!important}.p nav button{font-size:12px!important;padding:6px 11px!important}
+html.p{scroll-snap-type:y proximity}.p nav{overflow-x:auto;scrollbar-width:none;justify-content:flex-start;top:6px!important}.p nav::-webkit-scrollbar{display:none}.p nav button{flex:none}.p nav{left:7px!important;right:auto!important;transform:none!important}
 
 html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
 </style></head><body><div id="vp"><div class="stage" id="stage">
@@ -666,12 +666,12 @@ html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
 </div></div>
 <script>
 const st=document.getElementById('stage');
-function fit(){const p=innerWidth<900&&innerWidth<innerHeight;const H=document.documentElement,vp=document.getElementById('vp'),ct=document.querySelector('.ctrl');H.classList.toggle('p',p);if(p){const z=innerWidth/1280;st.style.zoom='';st.style.transform='scale('+z+')';st.style.transformOrigin='0 0';st.style.margin='0';S.forEach(x=>{x.style.minHeight='';x.style.height='720px'});st.style.paddingTop=(50/z)+'px';if(nav.parentNode!==document.body){document.body.appendChild(nav);document.body.appendChild(ct);}nav.style.zoom='';nav.style.maxWidth='calc(100vw - 16px)';vp.style.overflow='hidden';vp.style.height=(st.offsetHeight*z)+'px';window.__z=z;}else{const z=Math.min(innerWidth/1280,innerHeight/720);window.__z=z;st.style.transform='';st.style.margin='';vp.style.height='';vp.style.overflow='';st.style.zoom=z;nav.style.zoom='';nav.style.maxWidth='';st.style.paddingTop='';if(nav.parentNode===document.body){st.insertBefore(ct,st.firstChild);st.insertBefore(nav,st.firstChild);}S.forEach(x=>{x.style.minHeight='';x.style.height=(innerHeight/z)+'px'});}}
+function fit(){const p=innerHeight>innerWidth*1.1;const H=document.documentElement,vp=document.getElementById('vp'),ct=document.querySelector('.ctrl');H.classList.toggle('p',p);st.style.transform='';vp.style.height='';vp.style.overflow='';st.style.margin='';if(p){window.__z=1;st.style.zoom=1;S.forEach(x=>{x.style.minHeight='';x.style.height='720px'});st.style.paddingTop='120px';nav.style.zoom=2.2;ct.style.zoom=2.2;nav.style.maxWidth=((innerWidth-30)/2.2)+'px';}else{const z=Math.min(innerWidth/1280,innerHeight/720);window.__z=z;st.style.zoom=z;nav.style.zoom='';ct.style.zoom='';nav.style.maxWidth='';st.style.paddingTop='';S.forEach(x=>{x.style.minHeight='';x.style.height=(innerHeight/z)+'px'});}}
 addEventListener('resize',fit);
 const S=[...document.querySelectorAll('.slide')],nav=document.getElementById('nav');
 const tabs=[...new Set(S.map(s=>s.dataset.tab))];let i=0;
 tabs.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>go(S.findIndex(s=>s.dataset.tab===t));nav.appendChild(b)});
-function go(n){i=Math.max(0,Math.min(S.length-1,n));const z=window.__z||parseFloat(st.style.zoom)||1;window.scrollTo({top:S[i].offsetTop*z-(document.documentElement.classList.contains('p')?50:0),behavior:'smooth'});setCur(i);}
+function go(n){i=Math.max(0,Math.min(S.length-1,n));const z=window.__z||parseFloat(st.style.zoom)||1;window.scrollTo({top:S[i].offsetTop*z-(document.documentElement.classList.contains('p')?120:0),behavior:'smooth'});setCur(i);}
 function setCur(k){i=k;const x=S[k];document.documentElement.style.background=x.classList.contains('ct')?'#521315':x.classList.contains('cover')?'#f2e8d2':['#f2d6d5','#dc7f7f','#dcc3c2'][k%3];[...nav.children].forEach(b=>b.classList.toggle('on',b.textContent===S[i].dataset.tab));}
 document.getElementById('nx').onclick=()=>go(i+1);document.getElementById('pv').onclick=()=>go(i-1);
 addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}});
