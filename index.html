@@ -442,6 +442,60 @@ nav button.on{background:#7b2b2f!important}
 html{scroll-snap-type:y mandatory;background:#f2e8d2;transition:background .5s}
 .stage{margin:0 auto!important}
 .slide{scroll-snap-align:start;scroll-snap-stop:always}
+
+/* ===== MOBILE ===== */
+.m .slide:before,.m .slide:after{display:none!important}
+.m .ab{margin-top:0!important}.m .ab>div:last-child{padding-left:0!important}
+html.m{scroll-snap-type:y proximity}
+.m .stage{width:430px!important}
+.m .slide{height:auto;padding:84px 22px 40px!important;overflow:hidden}
+.m .slide *{max-width:100%;box-sizing:border-box}
+.m .deco,.m .dots,.m .vt,.m .vt2{display:none!important}
+.m nav{top:8px!important;max-width:410px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start}
+.m nav::-webkit-scrollbar{display:none}
+.m nav button{font-size:11px!important;padding:6px 10px!important;flex:none}
+.m .ctrl{right:10px!important;bottom:10px!important}
+.m h2.big{font-size:40px!important;margin:0 0 14px!important}
+.m p,.m li{font-size:13px!important;line-height:1.6!important}
+/* cover */
+.m .cv2{display:flex!important;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.m .cv2 .tl{position:absolute!important;left:22px!important;top:80px!important;font-size:13px!important}
+.m .cv2 h1{position:relative!important;left:auto!important;top:auto!important;transform:none!important;font-size:92px!important;margin:0!important;width:auto!important}
+.m .cv2 .nm{position:relative!important;left:auto!important;top:auto!important;transform:none!important;font-size:34px!important;margin-top:4px;width:auto!important}
+.m .selbox,.m .fcur,.m .swoosh,.m .pen2{display:none!important}
+.m .sp.k1{left:30px!important;top:200px!important}.m .sp.k2{left:340px!important;top:160px!important}.m .sp.k3{left:360px!important;top:640px!important}
+/* about / edu */
+.m .ab,.m .edu{display:flex!important;flex-direction:column!important;gap:22px!important;position:static!important;height:auto!important}
+.m .pf{width:340px!important;height:460px!important;margin:0 auto!important;flex:none;zoom:.72}
+.m .gradph{margin:0 auto!important;flex:none;zoom:.8}
+.m .ab>div:last-child,.m .edu>div:last-child{width:100%!important;position:static!important}
+.m .eg{flex-direction:column!important;display:flex!important;gap:12px}
+/* skill */
+.m .sk3{display:flex!important;flex-direction:column!important;gap:16px!important;height:auto!important}
+.m .skb{width:100%!important;height:auto!important}
+.m .sgrid{grid-template-columns:repeat(4,1fr)!important}
+/* course / project */
+.m .cx{display:flex!important;flex-direction:column;gap:16px;height:auto!important}
+.m .cxbot{display:flex!important;flex-direction:column!important;gap:16px;height:auto!important}
+.m .cxqr{width:100%!important;height:auto!important;display:flex;flex-direction:column;align-items:center}
+.m .gal{width:100%!important;height:260px!important;position:relative!important}
+/* work */
+.m .wk{display:block!important;height:auto!important}
+.m .wk .txt{width:100%!important}
+.m .wk h3{font-size:30px!important}
+.m .wk .vis{float:none!important;width:86%!important;margin:12px 0!important;transform:none!important}
+.m .wkc{position:relative!important;height:240px!important;width:100%!important;margin-top:14px}
+.m .duo{display:flex!important;flex-direction:column!important;gap:16px}
+.m .duo .card{width:100%!important}
+/* content */
+.m .ctx{display:flex!important;flex-direction:column!important;gap:16px;height:auto!important}
+.m .igwrap{width:100%!important;height:auto!important}
+.m .d9{width:100%!important;height:auto!important;grid-template-columns:repeat(3,1fr)!important}
+/* contact */
+.m .ct{display:flex!important;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.m .ct h2.big{font-size:56px!important}
+.m .cl{display:flex!important;flex-direction:column!important;gap:12px;width:100%}
+.m .cl a{width:100%!important;justify-content:center}
 </style></head><body><div id="vp"><div class="stage" id="stage">
 <nav id="nav"></nav>
 
@@ -608,7 +662,7 @@ html{scroll-snap-type:y mandatory;background:#f2e8d2;transition:background .5s}
 </div></div>
 <script>
 const st=document.getElementById('stage');
-function fit(){const z=Math.min(innerWidth/1280,innerHeight/720);st.style.zoom=z;S.forEach(x=>x.style.height=(innerHeight/z)+'px');}
+function fit(){const m=innerWidth<900&&innerWidth<innerHeight;document.documentElement.classList.toggle('m',m);if(m){const z=innerWidth/430;st.style.zoom=z;S.forEach(x=>{x.style.height='';x.style.minHeight=(innerHeight/z)+'px'});}else{const z=Math.min(innerWidth/1280,innerHeight/720);st.style.zoom=z;S.forEach(x=>{x.style.minHeight='';x.style.height=(innerHeight/z)+'px'});}}
 addEventListener('resize',fit);
 const S=[...document.querySelectorAll('.slide')],nav=document.getElementById('nav');
 const tabs=[...new Set(S.map(s=>s.dataset.tab))];let i=0;
