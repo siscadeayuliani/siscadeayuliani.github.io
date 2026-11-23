@@ -513,6 +513,8 @@ html{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
 .clk{white-space:nowrap}.p .clk{font-size:13px!important;padding:5px 12px!important;border-radius:14px!important}.p .scan{font-size:11px!important}
 
 .cv2 .selbox{left:50%!important;margin-left:-410px!important;width:820px!important;top:212px!important;height:236px!important}
+
+html,html.p,html.m{scroll-snap-type:none!important;scroll-behavior:smooth}.slide{scroll-snap-align:none!important;scroll-snap-stop:normal!important}
 </style></head><body><div id="vp"><div class="stage" id="stage">
 <nav id="nav"></nav>
 
@@ -691,7 +693,7 @@ function go(n){i=Math.max(0,Math.min(S.length-1,n));const z=window.__z||parseFlo
 function setCur(k){i=k;const x=S[k];document.documentElement.style.background=x.classList.contains('ct')?'#521315':x.classList.contains('cover')?'#f2e8d2':['#f2d6d5','#dc7f7f','#dcc3c2'][k%3];[...nav.children].forEach(b=>b.classList.toggle('on',b.textContent===S[i].dataset.tab));}
 document.getElementById('nx').onclick=()=>go(i+1);document.getElementById('pv').onclick=()=>go(i-1);
 addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}});
-const seen=new Set();const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const k=S.indexOf(en.target);en.target.classList.add('on');setCur(k);if(!seen.has(k)){seen.add(k);window.__snd&&window.__snd(en.target);}}})},{threshold:.5});
+const seen=new Set();const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const k=S.indexOf(en.target);en.target.classList.add('on');setCur(k);if(!seen.has(k)){seen.add(k);window.__snd&&window.__snd(en.target);}}})},{threshold:.25});
 S.forEach(x=>io.observe(x));fit();
 
 
